@@ -15,9 +15,9 @@ class TimelineHeader extends StatelessWidget {
         top: mediaQuery.padding.top + AppSizes.s04,
         left: AppSizes.s05,
         right: AppSizes.s05,
-        bottom: mediaQuery.padding.bottom + AppSizes.s04,
+        bottom: AppSizes.s04,
       ),
-      height: 210,
+      height: 220,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -42,7 +42,7 @@ class TimelineHeader extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: AppSizes.s05_5),
+                const Spacer(),
                 const Text(
                   "This is the next steps that you need to do to join us.",
                   style: TextStyle(color: Colors.white),

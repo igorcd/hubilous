@@ -25,6 +25,21 @@ class MyApp extends StatelessWidget {
           space: AppSizes.s08,
         ),
         textTheme: TextTheme(
+          displayLarge: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: AppSizes.s09,
+          ),
+          displayMedium: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: AppSizes.s06,
+          ),
+          displaySmall: TextStyle(
+            color: Colors.white.withOpacity(.8),
+            fontWeight: FontWeight.w500,
+            fontSize: AppSizes.s05,
+          ),
           //
           // Title medium
           titleMedium: TextStyle(
@@ -40,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: AppRouter.timelineFeature,
+      initialRoute: AppRouter.welcomeFeature,
       onGenerateRoute: AppRouter.controller,
     );
   }

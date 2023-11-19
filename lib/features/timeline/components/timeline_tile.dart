@@ -1,6 +1,5 @@
 import 'package:aubilous/components/ab_dashed_line.dart';
 import 'package:aubilous/components/ab_slider.dart';
-import 'package:aubilous/components/ab_text.dart';
 import 'package:aubilous/core/models/task_list_model.dart';
 import 'package:aubilous/resourses/app_colors.dart';
 import 'package:aubilous/resourses/app_sizes.dart';
@@ -16,11 +15,13 @@ class TimelineTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
+
     return IgnorePointer(
       ignoring: !active,
       child: Container(
         padding: const EdgeInsets.only(left: AppSizes.s05, right: AppSizes.s05),
-        height: 180,
+        height: 200,
         child: Stack(
           children: [
             // Linha inferior
@@ -82,14 +83,15 @@ class TimelineTile extends StatelessWidget {
                                     children: [
                                       //
                                       // Título
-                                      AbText.titleMedium(
+                                      Text(
                                         task.title,
+                                        style: textTheme.titleMedium,
                                       ),
                                       const SizedBox(height: AppSizes.s02),
 
                                       // Conteúdo
                                       Expanded(
-                                        child: AbText(
+                                        child: Text(
                                           task.description,
                                         ),
                                       ),

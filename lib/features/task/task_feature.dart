@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:aubilous/components/ab_checkbox_list_tile.dart';
 import 'package:aubilous/components/ab_icon_button.dart';
 import 'package:aubilous/components/ab_slider.dart';
-import 'package:aubilous/components/ab_text.dart';
 import 'package:aubilous/features/task/components/task_attachment.dart';
 import 'package:aubilous/features/task/components/task_header.dart';
 import 'package:aubilous/features/task/components/task_image.dart';
@@ -22,6 +21,8 @@ class TaskFeature extends StatefulWidget {
 class _TaskFeatureState extends State<TaskFeature> {
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       // Estilização
       body: Container(
@@ -64,6 +65,7 @@ class _TaskFeatureState extends State<TaskFeature> {
                         pinned: true,
                         floating: false,
                         elevation: 0,
+                        surfaceTintColor: Colors.transparent,
                         leading: Center(
                           child: AbIconButton(onPressed: () => Navigator.of(context).pop(), icon: AppIcons.angleLeft),
                         ),
@@ -90,9 +92,9 @@ class _TaskFeatureState extends State<TaskFeature> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                AbText.titleMedium("Description"),
+                                Text("Description", style: textTheme.titleMedium),
                                 const SizedBox(height: AppSizes.s02),
-                                AbText(
+                                Text(
                                   task_detail.taskDetail.description,
                                 ),
                                 const Divider(),
@@ -103,7 +105,10 @@ class _TaskFeatureState extends State<TaskFeature> {
                           // Imagens
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: AppSizes.s05),
-                            child: AbText.titleMedium("Images"),
+                            child: Text(
+                              "Images",
+                              style: textTheme.titleMedium,
+                            ),
                           ),
                           const SizedBox(height: AppSizes.s04),
                           SizedBox(
@@ -123,7 +128,10 @@ class _TaskFeatureState extends State<TaskFeature> {
                           // Required documents
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: AppSizes.s05),
-                            child: AbText.titleMedium("Check-list"),
+                            child: Text(
+                              "Check-list",
+                              style: textTheme.titleMedium,
+                            ),
                           ),
                           const SizedBox(height: AppSizes.s02),
                           ListView.builder(
@@ -144,7 +152,10 @@ class _TaskFeatureState extends State<TaskFeature> {
                           // Attachments
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: AppSizes.s05),
-                            child: AbText.titleMedium("Attachments"),
+                            child: Text(
+                              "Attachments",
+                              style: textTheme.titleMedium,
+                            ),
                           ),
                           ListView.separated(
                             padding: const EdgeInsets.all(AppSizes.s05),
@@ -172,13 +183,16 @@ class _TaskFeatureState extends State<TaskFeature> {
               right: 0,
               child: Container(
                 padding: const EdgeInsets.all(AppSizes.s03_5),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(AppSizes.s09)), boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.1),
-                    blurRadius: 16,
-                    offset: const Offset(0, -4),
-                  ),
-                ]),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(AppSizes.s09)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(.1),
+                        blurRadius: 16,
+                        offset: const Offset(0, -4),
+                      ),
+                    ]),
                 child: AbSlider(
                   height: AppSizes.s12_5,
                   minWidth: AppSizes.s17,

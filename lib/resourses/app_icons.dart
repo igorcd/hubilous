@@ -12,4 +12,5 @@ class AppIcons {
   static const String sef = 'lib/assets/icons/sef.png';
   static const String visa = 'lib/assets/icons/visa.png';
   static const String arrive = 'lib/assets/icons/arrive.png';
+  static const String search = 'lib/assets/icons/search.png';
 }

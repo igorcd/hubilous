@@ -1,10 +1,16 @@
+import 'package:aubilous/features/authentication/authentication_feature.dart';
+import 'package:aubilous/features/onboarding/onboarding_feature.dart';
 import 'package:aubilous/features/task/task_feature.dart';
 import 'package:aubilous/features/timeline/timeline_feature.dart';
+import 'package:aubilous/features/welcome/welcome_feature.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
+  static const String welcomeFeature = "WELCOME_FEATURE";
   static const String timelineFeature = "TIMELINE_FEATURE";
   static const String taskFeature = "TASK_DETAIL";
+  static const String authenticationFeature = "AUTHENTICATION_FEATURE";
+  static const String onboardingFeature = "ONBOARDING_FEATURE";
 
   static PageRouteBuilder _modalView(Widget page) {
     return PageRouteBuilder(
@@ -25,11 +31,17 @@ class AppRouter {
 
   static Route<dynamic> controller(RouteSettings settings) {
     switch (settings.name) {
-      // timeline
+      case authenticationFeature:
+        return MaterialPageRoute(builder: (context) => const AuthenticationFeature());
+
+      case welcomeFeature:
+        return MaterialPageRoute(builder: (context) => const WelcomeFeature());
+
       case timelineFeature:
         return MaterialPageRoute(builder: (context) => const TimelineFeature());
+      case onboardingFeature:
+        return MaterialPageRoute(builder: (context) => const OnboardingFeature());
 
-      // task feature
       case taskFeature:
         return _modalView(const TaskFeature());
 

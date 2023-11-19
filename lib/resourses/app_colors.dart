@@ -17,4 +17,21 @@ class AppColors {
       900: Color(0xFFDD0023)
     },
   );
+
+  // info
+  static const int _accent = 0xFF008DDD;
+  static const MaterialColor accent = MaterialColor(
+    _accent,
+    <int, Color>{
+      100: Color(_accent),
+      200: Color(_accent),
+      300: Color(_accent),
+      400: Color(_accent),
+      500: Color(_accent),
+      600: Color(0xFF5056EC),
+      700: Color(0xFF5056EC),
+      800: Color(0xFF5056EC),
+      900: Color(0xFF5056EC)
+    },
+  );
 }
