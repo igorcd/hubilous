@@ -15,6 +15,7 @@ class AppIcons {
   static const String arrive = 'lib/assets/icons/arrive.png';
   static const String search = 'lib/assets/icons/search.png';
   static const String user = 'lib/assets/icons/user.png';
+  static const String send = 'lib/assets/icons/send.png';
   static const String company = 'lib/assets/icons/company.png';
   static const String email = 'lib/assets/icons/email.png';
   static const String phone = 'lib/assets/icons/phone.png';

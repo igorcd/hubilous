@@ -3,6 +3,7 @@ import 'package:aubilous/features/authentication/authentication_feature.dart';
 import 'package:aubilous/features/bot/bot_feature.dart';
 import 'package:aubilous/features/consultant_detail/consultant_detail_feature.dart';
 import 'package:aubilous/features/faq/faq_feature.dart';
+import 'package:aubilous/features/manager_bot/managet_bot_feature.dart';
 import 'package:aubilous/features/manager_dashboard/manager_dashboard_feature.dart';
 import 'package:aubilous/features/manager_detail/manager_detail_feature.dart';
 import 'package:aubilous/features/onboarding/onboarding_feature.dart';
@@ -22,6 +23,7 @@ class AppRouter {
   static const String managerDetailFeature = "MANAGER_DETAIL";
   static const String faqFeature = "FAQ";
   static const String botFeature = "BOT";
+  static const String managerBotFeature = "MANAGER_BOT";
 
   static PageRouteBuilder _modalView(Widget page) {
     return PageRouteBuilder(
@@ -65,6 +67,9 @@ class AppRouter {
 
       case botFeature:
         return MaterialPageRoute(builder: (context) => const BotFeature());
+
+      case managerBotFeature:
+        return MaterialPageRoute(builder: (context) => const ManagerBotFeature());
 
       case taskFeature:
         return _modalView(TaskFeature(settings.arguments as bool? ?? false));

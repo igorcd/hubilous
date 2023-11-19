@@ -12,6 +12,7 @@ class ConsultantDashboardHeader extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
 
     return SafeArea(
+      bottom: false,
       child: Padding(
         padding: const EdgeInsets.only(
           left: AppSizes.s04,
@@ -47,7 +48,8 @@ class ConsultantDashboardHeader extends StatelessWidget {
                       color: Colors.white,
                       fontSize: AppSizes.s04,
                     ),
-                  )
+                  ),
+                  const SizedBox(height: AppSizes.s06),
                 ],
               ),
             ),

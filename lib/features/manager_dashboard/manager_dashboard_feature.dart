@@ -1,3 +1,4 @@
+import 'package:aubilous/components/ab_bot_button.dart';
 import 'package:aubilous/components/ab_gradient_container.dart';
 import 'package:aubilous/core/models/consultant_model.dart';
 import 'package:aubilous/features/manager_dashboard/components/consultant_grid_tile.dart';
@@ -130,34 +131,48 @@ class ManagerDashboardFeature extends StatelessWidget {
       drawer: const ManagerDashboardDrawer(),
       body: AbGradientContainer(
         theme: GradientTheme.blue,
-        child: CustomScrollView(
-          slivers: [
-            const SliverToBoxAdapter(
-              child: ManagerDashboardHeader(),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.only(
-                left: AppSizes.s07,
-                right: AppSizes.s07,
-                bottom: AppSizes.s07 + MediaQuery.of(context).padding.bottom,
-              ),
-              sliver: SliverMasonryGrid.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childCount: consultants.length,
-                itemBuilder: (c, i) => AspectRatio(
-                  aspectRatio: i == 0 ? .8 : .7,
-                  child: ConsultantGridTile(
-                    consultant: consultants[i],
-                    onTap: () => Navigator.of(context).pushNamed(
-                      AppRouter.consultantDetailFeature,
-                      arguments: consultants[i],
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: ManagerDashboardHeader(),
+                  ),
+                  SliverPadding(
+                    padding: EdgeInsets.only(
+                      left: AppSizes.s07,
+                      right: AppSizes.s07,
+                      bottom: AppSizes.s07 + MediaQuery.of(context).padding.bottom,
+                    ),
+                    sliver: SliverMasonryGrid.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8,
+                      crossAxisSpacing: 8,
+                      childCount: consultants.length,
+                      itemBuilder: (c, i) => AspectRatio(
+                        aspectRatio: i == 0 ? .8 : .7,
+                        child: ConsultantGridTile(
+                          consultant: consultants[i],
+                          onTap: () => Navigator.of(context).pushNamed(
+                            AppRouter.consultantDetailFeature,
+                            arguments: consultants[i],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: AbBotButton(
+                isManager: true,
+                onTap: () => Navigator.of(context).pushNamed(AppRouter.managerBotFeature),
+                message: "Hello Manager, I'm your personal assistantant, if you have any doubt, just click here",
+              ),
+            )
           ],
         ),
       ),
