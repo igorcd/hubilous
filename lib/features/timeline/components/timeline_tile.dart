@@ -1,17 +1,29 @@
 import 'package:aubilous/components/ab_dashed_line.dart';
+import 'package:aubilous/components/ab_gradient_container.dart';
 import 'package:aubilous/components/ab_slider.dart';
 import 'package:aubilous/core/models/task_list_model.dart';
 import 'package:aubilous/resourses/app_colors.dart';
+import 'package:aubilous/resourses/app_gradients.dart';
 import 'package:aubilous/resourses/app_sizes.dart';
-import 'package:aubilous/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 class TimelineTile extends StatelessWidget {
+  final GradientTheme theme;
   final bool isFirst;
+  final void Function() onTap;
   final bool active;
   final void Function() onComplete;
   final TaskListModel task;
-  const TimelineTile(this.task, {required this.onComplete, required this.active, required this.isFirst, super.key});
+
+  const TimelineTile(
+    this.task, {
+    required this.onTap,
+    required this.onComplete,
+    required this.active,
+    required this.isFirst,
+    super.key,
+    this.theme = GradientTheme.orange,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +63,7 @@ class TimelineTile extends StatelessWidget {
                     child: Image.asset(
                       task.icon,
                       width: AppSizes.s06,
-                      color: AppColors.primary,
+                      color: theme == GradientTheme.orange ? AppColors.primary : AppColors.accent,
                     ),
                   ),
                   const SizedBox(width: AppSizes.s03),
@@ -75,9 +87,7 @@ class TimelineTile extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(AppRouter.taskFeature);
-                                  },
+                                  onTap: onTap,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
@@ -106,6 +116,8 @@ class TimelineTile extends StatelessWidget {
                                     child: AbSlider(
                                       completed: task.complete,
                                       onComplete: onComplete,
+                                      gradient:
+                                          theme == GradientTheme.blue ? AppGradients.accent : AppGradients.primary,
                                     ),
                                   ),
                                 ],

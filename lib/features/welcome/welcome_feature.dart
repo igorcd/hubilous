@@ -48,7 +48,7 @@ class WelcomeFeature extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSizes.s02),
                 AbButton(
-                  onTap: () {},
+                  onTap: () => Navigator.of(context).pushNamed(AppRouter.authenticationFeature, arguments: true),
                   content: "I’m manager",
                   outline: true,
                 ),

@@ -1,4 +1,3 @@
-import 'package:aubilous/resourses/app_gradients.dart';
 import 'package:aubilous/resourses/app_icons.dart';
 import 'package:aubilous/resourses/app_sizes.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,17 @@ class AbSlider extends StatefulWidget {
   final double height;
   final double minWidth;
   final void Function() onComplete;
+  final RadialGradient gradient;
   final double iconSize;
-  const AbSlider({required this.completed, this.height = AppSizes.s09, this.iconSize = AppSizes.s04_5, this.minWidth = 55, required this.onComplete, super.key});
+
+  const AbSlider(
+      {required this.completed,
+      this.height = AppSizes.s09,
+      this.iconSize = AppSizes.s04_5,
+      required this.gradient,
+      this.minWidth = 55,
+      required this.onComplete,
+      super.key});
 
   @override
   State<AbSlider> createState() => _AbSliderState();
@@ -57,7 +65,7 @@ class _AbSliderState extends State<AbSlider> {
                   width: widget.completed ? double.infinity : widget.minWidth + delta,
                   constraints: BoxConstraints(minWidth: widget.minWidth, maxWidth: p1.maxWidth),
                   decoration: BoxDecoration(
-                    gradient: AppGradients.primary,
+                    gradient: widget.gradient,
                     borderRadius: BorderRadius.circular(AppSizes.s09),
                   ),
 

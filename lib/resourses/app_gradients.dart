@@ -10,4 +10,12 @@ class AppGradients {
       AppColors.primary.shade600,
     ],
   );
+  static final accent = RadialGradient(
+    center: const Alignment(-0.8, -0.8),
+    radius: 1,
+    colors: [
+      AppColors.accent,
+      AppColors.accent.shade600,
+    ],
+  );
 }

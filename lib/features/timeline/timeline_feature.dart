@@ -1,6 +1,8 @@
+import 'package:aubilous/components/ab_gradient_container.dart';
+import 'package:aubilous/features/timeline/components/consultant_dashboard_drawer.dart';
+import 'package:aubilous/features/timeline/components/consultant_dashboard_header.dart';
 import 'package:aubilous/features/timeline/components/timeline_tile.dart';
-import 'package:aubilous/features/timeline/sections/timeline_header.dart';
-import 'package:aubilous/resourses/app_colors.dart';
+import 'package:aubilous/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:aubilous/mock/task_list.dart' as task_list_mock;
 
@@ -15,21 +17,12 @@ class _TimelineFeatureState extends State<TimelineFeature> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            center: const Alignment(-0.8, -0.8),
-            radius: 1,
-            colors: [
-              AppColors.primary,
-              AppColors.primary.shade600,
-            ],
-          ),
-        ),
+      drawer: const ConsultantDashboardDrawer(),
+      body: AbGradientContainer(
         child: CustomScrollView(
           slivers: [
             const SliverToBoxAdapter(
-              child: TimelineHeader(),
+              child: ConsultantDashboardHeader(),
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
@@ -38,6 +31,7 @@ class _TimelineFeatureState extends State<TimelineFeature> {
                   var prevTask = index == 0 ? null : task_list_mock.tasks[index - 1];
                   return TimelineTile(
                     task,
+                    onTap: () => Navigator.of(context).pushNamed(AppRouter.taskFeature),
                     isFirst: index == 0,
                     active: prevTask == null || prevTask.complete == true || task.complete,
                     onComplete: () => setState(() => task_list_mock.tasks[index].complete = true),

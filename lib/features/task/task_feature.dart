@@ -12,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:aubilous/mock/task_detail.dart' as task_detail;
 
 class TaskFeature extends StatefulWidget {
-  const TaskFeature({super.key});
+  final bool isManager;
+  const TaskFeature(this.isManager, {super.key});
 
   @override
   State<TaskFeature> createState() => _TaskFeatureState();
@@ -26,7 +27,7 @@ class _TaskFeatureState extends State<TaskFeature> {
     return Scaffold(
       // Estilização
       body: Container(
-        decoration: BoxDecoration(gradient: AppGradients.primary),
+        decoration: BoxDecoration(gradient: widget.isManager ? AppGradients.accent : AppGradients.primary),
         child: Stack(
           children: [
             //
@@ -168,6 +169,7 @@ class _TaskFeatureState extends State<TaskFeature> {
                               return TaskAttachment(attachment);
                             },
                           ),
+                          const SizedBox(height: AppSizes.s10)
                         ],
                       ),
                     ),
@@ -193,12 +195,16 @@ class _TaskFeatureState extends State<TaskFeature> {
                         offset: const Offset(0, -4),
                       ),
                     ]),
-                child: AbSlider(
-                  height: AppSizes.s12_5,
-                  minWidth: AppSizes.s17,
-                  iconSize: AppSizes.s06,
-                  completed: task_detail.taskDetail.completed,
-                  onComplete: () => setState(() => task_detail.taskDetail.completed = true),
+                child: SafeArea(
+                  top: false,
+                  child: AbSlider(
+                    gradient: widget.isManager ? AppGradients.accent : AppGradients.primary,
+                    height: AppSizes.s12_5,
+                    minWidth: AppSizes.s17,
+                    iconSize: AppSizes.s06,
+                    completed: task_detail.taskDetail.completed,
+                    onComplete: () => setState(() => task_detail.taskDetail.completed = true),
+                  ),
                 ),
               ),
             )

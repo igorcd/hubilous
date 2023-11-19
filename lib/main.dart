@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: AppRouter.welcomeFeature,
+      initialRoute: AppRouter.managerDashboardFeature,
       onGenerateRoute: AppRouter.controller,
     );
   }

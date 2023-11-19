@@ -12,12 +12,6 @@ class TaskHeader extends StatelessWidget {
     final deltaExtent = settings.maxExtent - settings.minExtent;
     final t = (1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent).clamp(0.0, 1.0);
 
-    // // Top
-    // const topStart = 45;
-    // const topEnd = 17;
-    // const deltatop = topEnd - topStart;
-    // final top = topStart + (deltatop * t);
-
     // Opacidade dos textos
     final double opacity = 1 - math.min(1, t * 2);
 
@@ -27,7 +21,7 @@ class TaskHeader extends StatelessWidget {
         //
         // Nome do usuário
         Positioned(
-          top: 16,
+          top: 13,
           left: 50,
           right: 30,
           child: Opacity(

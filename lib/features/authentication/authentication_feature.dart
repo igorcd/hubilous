@@ -6,7 +6,8 @@ import 'package:aubilous/router/app_router.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationFeature extends StatefulWidget {
-  const AuthenticationFeature({super.key});
+  final bool isManager;
+  const AuthenticationFeature(this.isManager, {super.key});
 
   @override
   State<AuthenticationFeature> createState() => _AuthenticationFeatureState();
@@ -19,6 +20,7 @@ class _AuthenticationFeatureState extends State<AuthenticationFeature> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AbGradientContainer(
+        theme: widget.isManager ? GradientTheme.blue : GradientTheme.orange,
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,7 +49,9 @@ class _AuthenticationFeatureState extends State<AuthenticationFeature> {
                           duration: const Duration(milliseconds: 300), curve: Curves.ease),
                     ),
                     PinPage(
-                      onContinue: () => Navigator.of(context).pushNamed(AppRouter.onboardingFeature),
+                      onContinue: () => Navigator.of(context).pushNamed(
+                        widget.isManager ? AppRouter.managerDashboardFeature : AppRouter.onboardingFeature,
+                      ),
                     ),
                   ],
                 ),

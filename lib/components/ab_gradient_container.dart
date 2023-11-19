@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:aubilous/resourses/app_colors.dart';
+import 'package:aubilous/resourses/app_gradients.dart';
 import 'package:flutter/material.dart';
 
 enum GradientTheme {
@@ -15,22 +15,9 @@ class AbGradientContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Color> orangeTheme = [
-      AppColors.primary,
-      AppColors.primary.shade600,
-    ];
-    final List<Color> blueTheme = [
-      AppColors.accent,
-      AppColors.accent.shade600,
-    ];
-
     return Container(
       decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: const Alignment(-0.8, -0.8),
-          radius: 1,
-          colors: theme == GradientTheme.orange ? orangeTheme : blueTheme,
-        ),
+        gradient: theme == GradientTheme.orange ? AppGradients.primary : AppGradients.accent,
       ),
       child: Stack(
         children: [
