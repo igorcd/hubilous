@@ -3,7 +3,7 @@ import 'package:aubilous/features/authentication/authentication_feature.dart';
 import 'package:aubilous/features/bot/bot_feature.dart';
 import 'package:aubilous/features/consultant_detail/consultant_detail_feature.dart';
 import 'package:aubilous/features/faq/faq_feature.dart';
-import 'package:aubilous/features/manager_bot/managet_bot_feature.dart';
+import 'package:aubilous/features/manager_bot/manager_bot_feature.dart';
 import 'package:aubilous/features/manager_dashboard/manager_dashboard_feature.dart';
 import 'package:aubilous/features/manager_detail/manager_detail_feature.dart';
 import 'package:aubilous/features/onboarding/onboarding_feature.dart';

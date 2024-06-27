@@ -1,3 +1,4 @@
+import 'package:aubilous/components/ab_bot.dart';
 import 'package:aubilous/components/ab_gradient_container.dart';
 import 'package:aubilous/components/ab_icon_button.dart';
 import 'package:aubilous/resourses/app_icons.dart';
@@ -28,6 +29,7 @@ class ManagerBotFeature extends StatelessWidget {
             ),
           ),
         ),
+        body: const AbBot("clp5ezspa0005ia0fqj6usb4c"),
       ),
     );
   }

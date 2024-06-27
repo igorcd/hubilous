@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:aubilous/components/ab_bot_input.dart';
 import 'package:aubilous/components/ab_bot_interaction.dart';
 import 'package:aubilous/core/models/bot_interaction_model.dart';
@@ -16,10 +18,21 @@ class AbBot extends StatefulWidget {
 class _AbBotState extends State<AbBot> {
   late TypebotService _typebotService;
   TextEditingController textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   List<BotInteractionModel> interactions = [];
   String sessionId = '';
   bool loading = false;
+
+  void _scrollToEnd() {
+    Timer(const Duration(milliseconds: 500), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
+    });
+  }
 
   void sendMessage([String? value]) async {
     var answer = value ?? textController.text;
@@ -30,10 +43,14 @@ class _AbBotState extends State<AbBot> {
         loading = true;
       });
 
+      _scrollToEnd();
+
       var resp = await _typebotService.answer(message: answer, sessionId: sessionId);
       setState(() {
         interactions.add(resp);
       });
+
+      _scrollToEnd();
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -54,6 +71,8 @@ class _AbBotState extends State<AbBot> {
         interactions.add(resp.initialInteraction);
         sessionId = resp.sessionId;
       });
+
+      _scrollToEnd();
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -76,6 +95,7 @@ class _AbBotState extends State<AbBot> {
       children: [
         Expanded(
           child: ListView.separated(
+            controller: _scrollController,
             padding: const EdgeInsets.symmetric(
               horizontal: AppSizes.s06,
               vertical: AppSizes.s03,
@@ -99,7 +119,7 @@ class _AbBotState extends State<AbBot> {
                       children: [
                         AnimatedSwitcher(
                           duration: const Duration(milliseconds: 150),
-                          child: loading
+                          child: !loading
                               ? const SizedBox.shrink()
                               : const Padding(
                                   padding: EdgeInsets.only(bottom: AppSizes.s02),

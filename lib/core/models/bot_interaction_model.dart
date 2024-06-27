@@ -1,10 +1,12 @@
+import 'package:aubilous/core/models/bot_message_model.dart';
+
 enum BotInteractionType {
   choice,
   text,
 }
 
 class BotInteractionModel {
-  final List<String> messages;
+  final List<BotMessageModel> messages;
   final List<String> options;
   final BotInteractionType type;
   String response;
@@ -17,19 +19,18 @@ class BotInteractionModel {
   });
 
   factory BotInteractionModel.fromTypebotResponse(Map<String, dynamic> map) {
-    List<dynamic> messages = List.from(map['messages']) //
-        .map((message) => List.from(message['content']['richText'])
-            .expand((element) => element['children'])
-            .map((child) => child['text'])
-            .join('\n'))
-        .toList();
-
-    List<String> options = List.from(map['input']['items'] ?? [])
-        .map((item) => item['content'].toString()) //
-        .toList();
+    List<String> options = map['input'] != null
+        ? List.from(map['input']['items'] ?? [])
+            .map((item) => item['content'].toString()) //
+            .toList()
+        : [];
 
     return BotInteractionModel(
-      messages: List<String>.from(messages),
+      messages: List.from(map['messages'])
+          .map(
+            (message) => BotMessageModel.fromMap(message),
+          )
+          .toList(),
       type: map['input']['type'] == 'text input' ? BotInteractionType.text : BotInteractionType.choice,
       options: options,
       response: "",
